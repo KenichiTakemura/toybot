@@ -68,5 +68,5 @@ Output: 3,3,NORTH
 1. Build and run from Dockerfile
 ```
 $ docker build . -t toybot
-$ podman run --rm --name toybot toybot
+$ docker run --rm --name toybot toybot
 ```
