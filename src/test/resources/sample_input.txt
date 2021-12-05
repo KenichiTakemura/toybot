@@ -1,0 +1,3 @@
+BOT myToy
+PLACE 0,0,NORTH
+REPORT
