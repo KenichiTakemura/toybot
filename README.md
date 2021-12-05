@@ -11,6 +11,7 @@
 Create an application that can read in commands of the following form:
 
 ```plain
+BOT toyBot
 PLACE X,Y,F
 MOVE
 LEFT
@@ -18,6 +19,7 @@ RIGHT
 REPORT
 ```
 
+- BOT will select a toy bot to control
 - PLACE will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST.
 - The origin (0,0) can be considered to be the SOUTH WEST most corner.
 - The first valid command to the robot is a PLACE command, after that, any sequence of commands may be issued, in any order, including another PLACE command. The application should discard all commands in the sequence until a valid PLACE command has been executed.
@@ -35,6 +37,7 @@ Any move that would cause the robot to fall must be ignored.
 Example Input and Output:
 
 ```plain
+BOT toyBot
 PLACE 0,0,NORTH
 MOVE
 REPORT
@@ -42,6 +45,7 @@ Output: 0,1,NORTH
 ```
 
 ```plain
+BOT toyBot
 PLACE 0,0,NORTH
 LEFT
 REPORT
@@ -49,6 +53,7 @@ Output: 0,0,WEST
 ```
 
 ```plain
+BOT toyBot
 PLACE 1,2,EAST
 MOVE
 MOVE
@@ -58,3 +63,10 @@ REPORT
 Output: 3,3,NORTH
 ```
 
+## How to run
+1. Install docker
+1. Build and run from Dockerfile
+```
+$ docker build . -t toybot
+$ podman run --rm --name toybot toybot
+```

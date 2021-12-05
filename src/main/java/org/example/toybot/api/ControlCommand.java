@@ -1,7 +1,5 @@
 package org.example.toybot.api;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 public interface ControlCommand {
 
     String getCommand();

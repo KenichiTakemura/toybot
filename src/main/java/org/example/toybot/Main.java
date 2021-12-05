@@ -11,7 +11,7 @@ public class Main {
         var inputStream = new BufferedInputStream(System.in);
         BotController botController = new DefaultBotController(inputStream);
         BotField botField = new DefaultBotField(5, 5);
-        botController.registerBot(new ToyBot("myToy"));
+        botController.registerBot(new ToyBot("toyBot"));
         AutoPilot autoPilot = new AutoPilot(botController, botField, System.out);
         autoPilot.start();
     }
