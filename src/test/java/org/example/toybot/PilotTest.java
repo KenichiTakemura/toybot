@@ -1,7 +1,7 @@
 package org.example.toybot;
 
 import org.example.toybot.api.BotController;
-import org.example.toybot.api.BotField;
+import org.example.toybot.api.BotTable;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -9,17 +9,17 @@ import java.io.ByteArrayOutputStream;
 
 import static org.junit.Assert.assertEquals;
 
-public class AutoPilotTest {
+public class PilotTest {
 
     @Test
     public void test() {
-        String commands = "BOT myToy\nPLACE 0,0,WEST\nREPORT";
+        String commands = "PLACE 0,0,NORTH\nLEFT\nREPORT";
         BotController botController = new DefaultBotController(new ByteArrayInputStream(commands.getBytes()));
-        BotField botField = new DefaultBotField(5, 5);
+        BotTable botTable = new DefaultBotTable(5, 5);
         botController.registerBot(new ToyBot("myToy"));
         ByteArrayOutputStream baout = new ByteArrayOutputStream();
-        AutoPilot autoPilot = new AutoPilot(botController, botField, baout);
-        autoPilot.start();
+        Pilot pilot = new Pilot(botController, botTable, baout);
+        pilot.start();
         assertEquals("0,0,WEST", baout.toString());
     }
 

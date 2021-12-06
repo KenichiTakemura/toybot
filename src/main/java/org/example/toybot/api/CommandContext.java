@@ -2,7 +2,12 @@ package org.example.toybot.api;
 
 public interface CommandContext {
 
-    BotField getBotField();
+    /**
+     * Get bot table
+     *
+     * @return The bot table
+     */
+    BotTable getBotTable();
 
     /**
      * Get currently selected Bot

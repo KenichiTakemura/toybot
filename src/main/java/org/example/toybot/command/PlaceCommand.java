@@ -25,8 +25,8 @@ public class PlaceCommand extends AbstractControlCommand {
     @Override
     public void execute() {
         if (getContext().currentBot() != null) {
-            if (getContext().getBotField().onField(position)) {
-                getContext().getBotField().placeBot(getContext().currentBot(),
+            if (getContext().getBotTable().onTable(position)) {
+                getContext().getBotTable().placeABot(getContext().currentBot(),
                         position, direction);
             }
         }

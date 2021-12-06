@@ -32,7 +32,7 @@ public class ReportCommand extends AbstractControlCommand {
     @Override
     public void execute() {
         if (getContext().currentBot() != null &&
-                getContext().getBotField().inField(getContext().currentBot())) {
+                getContext().getBotTable().onTable(getContext().currentBot())) {
             Position position = getContext().currentBot().position();
             Direction direction = getContext().currentBot().direction();
             try {

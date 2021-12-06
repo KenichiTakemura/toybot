@@ -3,7 +3,7 @@ package org.example.toybot;
 import com.google.common.collect.ImmutableSet;
 import org.example.toybot.api.Bot;
 import org.example.toybot.api.BotController;
-import org.example.toybot.api.BotField;
+import org.example.toybot.api.BotTable;
 import org.example.toybot.api.ControlCommand;
 
 import java.io.InputStream;
@@ -14,7 +14,7 @@ public class DefaultBotController implements BotController {
 
     private final Map<String, AbstractControlCommand> controlCommands = new HashMap<>();
     private final DefaultCommandContext commandContext;
-    private BotField botField;
+    private BotTable botTable;
     private Set<Bot> bots = new HashSet<>();
     private InputStream inputStream;
 
@@ -24,13 +24,13 @@ public class DefaultBotController implements BotController {
     }
 
     @Override
-    public Set<Bot> bots() {
+    public Set<Bot> getBots() {
         return ImmutableSet.copyOf(bots);
     }
 
     @Override
-    public BotField botField() {
-        return botField;
+    public BotTable getBotTable() {
+        return botTable;
     }
 
     @Override
@@ -66,8 +66,8 @@ public class DefaultBotController implements BotController {
     }
 
     @Override
-    public BotController registerBotField(BotField botField) {
-        this.botField = botField;
+    public BotController registerBotTable(BotTable botTable) {
+        this.botTable = botTable;
         return this;
     }
 
@@ -78,14 +78,4 @@ public class DefaultBotController implements BotController {
         return this;
     }
 
-    @Override
-    public Set<ControlCommand> controlCommands() {
-        return ImmutableSet.copyOf(controlCommands.values());
-    }
-
-    @Override
-    public BotController unregisterControlCommand(ControlCommand controlCommand) {
-        controlCommands.remove(controlCommand.getCommand());
-        return this;
-    }
 }

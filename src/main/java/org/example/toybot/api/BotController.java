@@ -10,14 +10,14 @@ public interface BotController {
      *
      * @return Registered bots
      */
-    Set<Bot> bots();
+    Set<Bot> getBots();
 
     /**
      * Get a filed of bots
      *
      * @return A filed of bots
      */
-    BotField botField();
+    BotTable getBotTable();
 
     /**
      * Get control commands supplied from
@@ -35,12 +35,12 @@ public interface BotController {
     BotController registerBot(Bot bot);
 
     /**
-     * Register a bot filed
+     * Register a bot table
      *
-     * @param botField A bot filed to be registered
+     * @param botTable A bot table to be registered
      * @return self
      */
-    BotController registerBotField(BotField botField);
+    BotController registerBotTable(BotTable botTable);
 
     /**
      * Register a control command
@@ -49,8 +49,4 @@ public interface BotController {
      * @return self
      */
     BotController registerControlCommand(ControlCommand controlCommand);
-
-    Set<ControlCommand> controlCommands();
-
-    BotController unregisterControlCommand(ControlCommand controlCommand);
 }

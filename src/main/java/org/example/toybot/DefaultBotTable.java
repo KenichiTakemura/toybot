@@ -1,32 +1,32 @@
 package org.example.toybot;
 
 import org.example.toybot.api.Bot;
-import org.example.toybot.api.BotField;
+import org.example.toybot.api.BotTable;
 
-public class DefaultBotField implements BotField {
+public class DefaultBotTable implements BotTable {
 
     private final int maxX;
     private final int maxY;
 
-    public DefaultBotField(int maxX, int maxY) {
+    public DefaultBotTable(int maxX, int maxY) {
         this.maxX = maxX;
         this.maxY = maxY;
     }
 
     @Override
-    public boolean onField(Position position) {
+    public boolean onTable(Position position) {
         int x = position.getX();
         int y = position.getY();
         return 0 <= x && x <= maxX && 0 <= y && y <= maxY;
     }
 
     @Override
-    public boolean inField(Bot bot) {
-        return !bot.position().equals(Position.NONE);
+    public boolean onTable(Bot bot) {
+        return onTable(bot.position());
     }
 
     @Override
-    public BotField placeBot(Bot bot, Position position, Direction direction) {
+    public BotTable placeABot(Bot bot, Position position, Direction direction) {
         bot.moveTo(position).faceTo(direction);
         return this;
     }
