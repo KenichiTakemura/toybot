@@ -23,10 +23,10 @@ public interface BotTable {
 
     /**
      * Place a bot into table at given a position facing given direction
-     * @param bot A bot
-     * @param position A position to be placed
+     *
+     * @param bot       A bot
+     * @param position  A position to be placed
      * @param direction A facing direction
-     * @return self
      */
-    BotTable placeABot(Bot bot, Position position, Direction direction);
+    void placeABot(Bot bot, Position position, Direction direction);
 }

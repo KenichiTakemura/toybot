@@ -26,8 +26,7 @@ public class DefaultBotTable implements BotTable {
     }
 
     @Override
-    public BotTable placeABot(Bot bot, Position position, Direction direction) {
+    public void placeABot(Bot bot, Position position, Direction direction) {
         bot.moveTo(position).faceTo(direction);
-        return this;
     }
 }

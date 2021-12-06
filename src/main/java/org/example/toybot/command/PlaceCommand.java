@@ -13,7 +13,7 @@ import org.example.toybot.Position;
 public class PlaceCommand extends AbstractControlCommand {
 
     // The position to be placed
-    private Position position;
+    private Position position = Position.NONE;
     // The direction to be faced
     private Direction direction;
 
@@ -24,7 +24,7 @@ public class PlaceCommand extends AbstractControlCommand {
 
     @Override
     public void execute() {
-        if (getContext().currentBot() != null) {
+        if (getContext().currentBot() != null && getContext().getBotTable() != null) {
             if (getContext().getBotTable().onTable(position)) {
                 getContext().getBotTable().placeABot(getContext().currentBot(),
                         position, direction);
