@@ -1,20 +1,20 @@
 package org.example.toybot.command;
 
 /**
- * A command to rotate the robot - 90 degrees
+ * A command to rotate the robot + 90 degrees
  * <pre>{@code
- *     LEFT
+ *     RIGHT
  * }</pre>
  */
-public class LeftCommand extends AbstractRotateCommand {
+public class RightCommand extends AbstractRotateCommand {
 
     @Override
     public String getCommand() {
-        return "LEFT";
+        return "RIGHT";
     }
 
     @Override
     protected int rotateDegree() {
-        return -90;
+        return 90;
     }
 }

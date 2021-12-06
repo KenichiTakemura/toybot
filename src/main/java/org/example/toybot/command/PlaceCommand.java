@@ -47,4 +47,11 @@ public class PlaceCommand extends AbstractControlCommand {
         return this;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
 }
