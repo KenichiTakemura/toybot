@@ -4,7 +4,7 @@ import org.example.toybot.AbstractControlCommand;
 import org.example.toybot.Direction;
 
 /**
- * A command to rotate the robot 90 degrees in the specified direction without changing the position of the robot.
+ * A command to rotate the robot X degrees in the specified direction without changing the position of the robot.
  */
 public abstract class AbstractRotateCommand extends AbstractControlCommand {
 

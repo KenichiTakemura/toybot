@@ -55,9 +55,25 @@ public class PlaceCommandTest extends TestAbstractControlCommand {
         verify(commandContext, bot, botTable);
     }
 
+
     @Test(expected = IllegalArgumentException.class)
     public void invalidArgument() {
-        PlaceCommand command = new PlaceCommand().decode("a,b,c");
+        PlaceCommand command = new PlaceCommand().decode(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void invalidX() {
+        PlaceCommand command = new PlaceCommand().decode("a,1,North");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void invalidY() {
+        PlaceCommand command = new PlaceCommand().decode("1,a,North");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void invalidDirection() {
+        PlaceCommand command = new PlaceCommand().decode("1,2,Up");
     }
 
 }

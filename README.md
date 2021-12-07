@@ -37,7 +37,6 @@ Any move that would cause the robot to fall must be ignored.
 Example Input and Output:
 
 ```plain
-BOT toyBot
 PLACE 0,0,NORTH
 MOVE
 REPORT
@@ -45,7 +44,6 @@ Output: 0,1,NORTH
 ```
 
 ```plain
-BOT toyBot
 PLACE 0,0,NORTH
 LEFT
 REPORT
@@ -53,7 +51,6 @@ Output: 0,0,WEST
 ```
 
 ```plain
-BOT toyBot
 PLACE 1,2,EAST
 MOVE
 MOVE
@@ -63,10 +60,19 @@ REPORT
 Output: 3,3,NORTH
 ```
 
-## How to run
+## Run using docker
+
 1. Install docker
 1. Build and run from Dockerfile
 ```
 $ docker build . -t toybot
 $ docker run --rm --name toybot toybot
 ```
+
+## Run using maven
+```
+$ cat src/test/resources/sample_input2.txt | mvn clean install exec:java
+```
+## Class Siagram
+
+![Class diagram](./diagram.png)

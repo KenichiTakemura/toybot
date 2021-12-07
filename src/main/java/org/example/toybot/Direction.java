@@ -2,12 +2,19 @@ package org.example.toybot;
 
 import java.util.Arrays;
 
+/**
+ * A supporting direction with a degree (0&lt;=degree&lt;360)
+ */
 public enum Direction {
+    // North 0 degree
     NORTH(0),
+    // East, 90 degree
     EAST(90),
+    // South, 180 degree
     SOUTH(180),
+    // West, 270 degree
     WEST(270);
-    private int degree;
+    private final int degree;
 
     Direction(int degree) {
         this.degree = degree;

@@ -5,9 +5,21 @@ import org.example.toybot.api.Bot;
 
 import java.util.Objects;
 
+/**
+ * A toy bot
+ */
 public class ToyBot implements Bot {
+    /**
+     * Name of toy bot
+     */
     private final String name;
+    /**
+     * Current direction
+     */
     private Direction direction;
+    /**
+     * Current position
+     */
     private Position position;
 
     public ToyBot(String name) {

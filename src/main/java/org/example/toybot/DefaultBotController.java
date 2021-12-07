@@ -1,22 +1,26 @@
 package org.example.toybot;
 
 import com.google.common.collect.ImmutableSet;
+import org.apache.commons.io.input.BoundedInputStream;
 import org.example.toybot.api.Bot;
 import org.example.toybot.api.BotController;
 import org.example.toybot.api.BotTable;
 import org.example.toybot.api.ControlCommand;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class DefaultBotController implements BotController {
 
+    private static final int MAX_BYTE_COUNT = 4096;
     private final Map<String, AbstractControlCommand> controlCommands = new HashMap<>();
     private final DefaultCommandContext commandContext;
     private BotTable botTable;
-    private Set<Bot> bots = new HashSet<>();
-    private InputStream inputStream;
+    private final Set<Bot> bots = new HashSet<>();
+    private final InputStream inputStream;
 
     public DefaultBotController(InputStream inputStream) {
         this.inputStream = inputStream;
@@ -34,13 +38,13 @@ public class DefaultBotController implements BotController {
     }
 
     @Override
-    public List<ControlCommand> commands() {
+    public List<ControlCommand> commands() throws IOException {
         List<ControlCommand> commands = new ArrayList<>();
-        try (Scanner scanner = new Scanner(inputStream, StandardCharsets.UTF_8.name())
-                .useDelimiter(System.lineSeparator())) {
-            while (scanner.hasNextLine()) {
+        InputStream bounded = new BoundedInputStream(inputStream, MAX_BYTE_COUNT);
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(bounded))) {
+            String line;
+            while ((line = br.readLine()) != null) {
                 try {
-                    String line = scanner.next();
                     if (!line.trim().isEmpty()) {
                         // Extract command separated by the first space, rests will be arguments if present
                         String command = line.split(" ")[0];

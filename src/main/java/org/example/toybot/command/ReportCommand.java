@@ -3,7 +3,7 @@ package org.example.toybot.command;
 import org.example.toybot.AbstractControlCommand;
 import org.example.toybot.Direction;
 import org.example.toybot.Position;
-import org.example.toybot.api.ReportingData;
+import org.example.toybot.api.ReportingFormatter;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -11,7 +11,8 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
 /**
- * A command to report a bot position to an output stream
+ * A command to report a bot position to an output stream as byte array.
+ * The reporting format also needs to be specified with {@link ReportingFormatter}
  * <pre>{@code
  *     REPORT
  * }</pre>
@@ -36,7 +37,7 @@ public class ReportCommand extends AbstractControlCommand {
             Position position = getContext().currentBot().position();
             Direction direction = getContext().currentBot().direction();
             try {
-                outputStream.write(new PositionData(position, direction).encode());
+                outputStream.write(new PositionFormatter(position, direction).format());
             } catch (IOException e) {
                 // error
             }
@@ -48,11 +49,14 @@ public class ReportCommand extends AbstractControlCommand {
         return this;
     }
 
-    private static class PositionData implements ReportingData {
+    /**
+     * An example of reporting formatter, which reports a position and direction separated by commas.
+     */
+    private static class PositionFormatter implements ReportingFormatter {
         private final Position position;
         private final Direction direction;
 
-        public PositionData(Position position, Direction direction) {
+        public PositionFormatter(Position position, Direction direction) {
             this.position = position;
             this.direction = direction;
         }
@@ -63,7 +67,7 @@ public class ReportCommand extends AbstractControlCommand {
         }
 
         @Override
-        public byte[] encode() {
+        public byte[] format() {
             try {
                 return toString().getBytes(StandardCharsets.UTF_8.name());
             } catch (UnsupportedEncodingException e) {

@@ -34,13 +34,19 @@ public class PlaceCommand extends AbstractControlCommand {
 
     @Override
     public PlaceCommand decode(String argument) throws IllegalArgumentException {
+        if (argument == null) {
+            throw new IllegalArgumentException("argument is required.");
+        }
         String[] args = argument.split(",");
+        // Expect X,Y,direction
         if (args.length == 3) {
             try {
                 position = new Position(Integer.parseInt(args[0]),
                         Integer.parseInt(args[1]));
                 direction = Direction.valueOf(args[2]);
             } catch (Exception e) {
+                // Failed to parse as integer
+                // Direction is out of range
                 throw new IllegalArgumentException(e);
             }
         }

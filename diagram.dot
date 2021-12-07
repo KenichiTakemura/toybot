@@ -1,0 +1,47 @@
+digraph hierarchy {
+size="5,5"
+node[shape=record,style=filled,fillcolor=gray95]
+edge[dir=back, arrowtail=empty]
+
+Bot[label = "Bot"]
+ToyBot[label = "ToyBot"]
+BotController[label = "BotController"]
+DefaultBotController[label = "DefaultBotController"]
+BotTable[label = "BotTable"]
+DefaultBotTable[label = "DefaultBotTable"]
+CommandContext[label = "CommandContext"]
+DefaultCommandContext[label = "DefaultCommandContext"]
+ControlCommand[label = "ControlCommand"]
+AbstractControlCommand[label = "AbstractControlCommand"]
+AbstractRotateCommand[label = "AbstractRotateCommand"]
+
+Pilot[label = "Pilot"]
+OutputStream[label = "OutputStream"]
+InputStream[label = "InputStream"]
+
+LeftCommand[label = "LeftCommand"]
+RightCommand[label = "RightCommand"]
+ReportCommand[label = "ReportCommand"]
+PlaceCommand[label = "PlaceCommand"]
+MoveCommand[label = "MoveCommand"]
+
+Bot->ToyBot[arrowtail=onormal]
+BotController->DefaultBotController[arrowtail=onormal]
+BotTable->DefaultBotTable[arrowtail=onormal]
+CommandContext->DefaultCommandContext[arrowtail=onormal]
+ControlCommand->AbstractControlCommand[arrowtail=onormal]
+AbstractControlCommand->AbstractRotateCommand
+AbstractRotateCommand->LeftCommand
+AbstractRotateCommand->RightCommand
+AbstractControlCommand->ReportCommand
+AbstractControlCommand->PlaceCommand
+AbstractControlCommand->MoveCommand
+
+InputStream->BotController[arrowtail=diamond]
+Pilot->BotController[arrowtail=diamond]
+Pilot->BotTable[arrowtail=diamond]
+Pilot->Bot[arrowtail=diamond]
+Pilot->OutputStream[arrowtail=diamond]
+BotController->CommandContext[arrowtail=diamond]
+AbstractControlCommand->CommandContext[arrowtail=diamond]
+}

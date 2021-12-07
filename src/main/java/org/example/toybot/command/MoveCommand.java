@@ -4,7 +4,7 @@ import org.example.toybot.AbstractControlCommand;
 import org.example.toybot.Position;
 
 /**
- * A command to move a bot by 1 distance towards the direction
+ * A command to move a bot by 1 distance towards the current direction
  * <pre>{@code
  *     MOVE
  * }</pre>

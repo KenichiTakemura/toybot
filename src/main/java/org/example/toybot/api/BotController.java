@@ -1,5 +1,6 @@
 package org.example.toybot.api;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
@@ -20,11 +21,11 @@ public interface BotController {
     BotTable getBotTable();
 
     /**
-     * Get control commands supplied from
+     * Get control commands supplied from an input stream
      *
      * @return control commands
      */
-    List<ControlCommand> commands();
+    List<ControlCommand> commands() throws IOException;
 
     /**
      * Register a bot

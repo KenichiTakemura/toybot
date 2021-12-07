@@ -4,10 +4,22 @@ import com.google.common.base.MoreObjects;
 
 import java.util.Objects;
 
+/**
+ * A position class
+ */
 public class Position {
+    /**
+     * X coordinate
+     */
     private int x;
+    /**
+     * Y coordinate
+     */
     private int y;
 
+    /**
+     * Represent an invalid position
+     */
     public static Position NONE = new Position(-1, -1);
 
     public Position(int x, int y) {
