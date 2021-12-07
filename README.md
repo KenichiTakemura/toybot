@@ -73,6 +73,6 @@ $ docker run --rm --name toybot toybot
 ```
 $ cat src/test/resources/sample_input2.txt | mvn clean install exec:java
 ```
-## Class Siagram
+## Class Diagram
 
 ![Class diagram](./diagram.png)
