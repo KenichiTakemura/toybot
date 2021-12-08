@@ -76,3 +76,10 @@ $ cat src/test/resources/sample_input2.txt | mvn clean install exec:java
 ## Class Diagram
 
 ![Class diagram](./diagram.png)
+
+## Design summary
+
+1. Support different forms of input such as console, Network, file. BotController is designed to work on an input stream.
+1. Support streamed input to control the load when getting commands.
+2. Support different forms of output. Report command can pass output into an output stream.
+3. Adding a new command can be done by extending and  ```AbstractControlCommand```.

@@ -23,6 +23,9 @@ public class ToyBot implements Bot {
     private Position position;
 
     public ToyBot(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name must be present");
+        }
         this.name = name;
         this.position = Position.NONE;
         this.direction = Direction.NORTH;
@@ -45,6 +48,11 @@ public class ToyBot implements Bot {
 
     @Override
     public Bot move(int d) {
+        if (position.equals(Position.NONE))
+        {
+            // Not placed
+            return this;
+        }
         switch (direction) {
             case NORTH:
                 position.setY(position.getY() + d);
@@ -78,7 +86,7 @@ public class ToyBot implements Bot {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, position, direction);
+        return Objects.hash(name);
     }
 
     @Override
