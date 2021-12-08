@@ -70,9 +70,24 @@ $ docker run --rm --name toybot toybot
 ```
 
 ## Run using maven
+* Prepare a file including some commands
+
 ```
-$ cat src/test/resources/sample_input2.txt | mvn clean install exec:java
+$ cat <path_to_file> | mvn verify exec:java
 ```
+
+* Run using console
+
+You must hit ```Ctrl-D``` to complete inputs.
+
+```
+$ mvn verify exec:java
+PLACE 0,0,NORTH
+MOVE
+REPORT
+Ctrl-D
+```
+
 ## Class Diagram
 
 ![Class diagram](./diagram.png)
