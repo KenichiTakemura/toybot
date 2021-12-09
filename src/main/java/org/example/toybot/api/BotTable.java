@@ -29,4 +29,18 @@ public interface BotTable {
      * @param direction A facing direction
      */
     void placeABot(Bot bot, Position position, Direction direction);
+
+    /**
+     * Get the height of table
+     *
+     * @return The height
+     */
+    int getHeight();
+
+    /**
+     * Get the length of table
+     *
+     * @return The length
+     */
+    int getLength();
 }

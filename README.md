@@ -92,6 +92,7 @@ Ctrl-D
 
 ![Class diagram](./diagram.png)
 
+* CommandContext is a shared data between ```BotController``` and ```ControlCommand```
 ## Design summary
 
 1. To support different forms of input such as console, Network, file, BotController is designed to work on an input stream.

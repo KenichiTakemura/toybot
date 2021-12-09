@@ -44,19 +44,15 @@ public class DefaultBotController implements BotController {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(bounded))) {
             String line;
             while ((line = br.readLine()) != null) {
-                try {
-                    if (!line.trim().isEmpty()) {
-                        // Extract command separated by the first space, rests will be arguments if present
-                        String command = line.split(" ")[0];
-                        if (controlCommands.containsKey(command)) {
-                            ControlCommand controlCommand = controlCommands.get(command).decode(
-                                    line.substring(line.length() > command.length() ?
-                                            command.length() + 1 : command.length()));
-                            commands.add(controlCommand);
-                        }
+                if (!line.trim().isEmpty()) {
+                    // Extract command separated by the first space, rests will be arguments if present
+                    String command = line.split(" ")[0];
+                    if (controlCommands.containsKey(command)) {
+                        ControlCommand controlCommand = controlCommands.get(command).decode(
+                                line.substring(line.length() > command.length() ?
+                                        command.length() + 1 : command.length()));
+                        commands.add(controlCommand);
                     }
-                } catch (Exception e) {
-                    // Ctrl-D
                 }
             }
         }

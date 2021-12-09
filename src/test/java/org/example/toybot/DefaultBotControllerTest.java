@@ -1,20 +1,25 @@
 package org.example.toybot;
 
+import org.easymock.Capture;
+import org.example.toybot.api.Bot;
 import org.example.toybot.api.BotController;
+import org.example.toybot.api.BotTable;
 import org.example.toybot.command.PlaceCommand;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
-import java.security.SecureRandom;
 
+import static org.easymock.EasyMock.*;
 import static org.junit.Assert.assertEquals;
 
 public class DefaultBotControllerTest {
 
     @Test
     public void commands() throws Exception {
-
         ByteBuffer byteBuffer = ByteBuffer.allocate(8192);
         ByteArrayInputStream bin = new ByteArrayInputStream(byteBuffer.array());
 
@@ -30,4 +35,15 @@ public class DefaultBotControllerTest {
         assertEquals(244, controller.commands().size());
     }
 
+    @Test
+    public void testCoverage() {
+        InputStream in = mock(InputStream.class);
+        Bot bot = mock(Bot.class);
+        BotTable botTable = mock(BotTable.class);
+        BotController controller = new DefaultBotController(in);
+        controller.registerBot(bot);
+        controller.registerBotTable(botTable);
+        assertEquals(bot, controller.getBots().iterator().next());
+        assertEquals(botTable, controller.getBotTable());
+    }
 }

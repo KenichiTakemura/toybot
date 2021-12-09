@@ -6,7 +6,10 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
+import static org.easymock.EasyMock.*;
 import static org.junit.Assert.assertEquals;
 
 public class PilotTest {
@@ -20,6 +23,22 @@ public class PilotTest {
         Pilot pilot = new Pilot(new ToyBot("myToy"), botController, botTable, baout);
         pilot.start();
         assertEquals("1,0,SOUTH", baout.toString());
+    }
+
+    @Test
+    public void testCoverage() throws IOException {
+        InputStream inputStream = mock(InputStream.class);
+        BotController botController = new DefaultBotController(inputStream);
+        BotTable botTable = new DefaultBotTable(5, 5);
+        ByteArrayOutputStream baout = new ByteArrayOutputStream();
+        Pilot pilot = new Pilot(new ToyBot("myToy"), botController, botTable, baout);
+
+        expect(inputStream.read(anyObject(byte[].class), anyInt(), anyInt()))
+                .andThrow(new IOException());
+        inputStream.close();
+        replay(inputStream);
+        pilot.start();
+        verify(inputStream);
     }
 
 }
